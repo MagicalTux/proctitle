@@ -82,7 +82,7 @@ PHP_FUNCTION(setproctitle)
 	setproctitle(title, tlen);
 #else
 	/* let's use system setproctitle() (BSD or compatible) */
-	setproctitle("%*.s", tlen, title);
+	setproctitle("%s", title);
 #endif
 }
 /* }}} */

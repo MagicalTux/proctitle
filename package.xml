@@ -21,11 +21,13 @@ This extension allows changing the current process' name on Linux and *BSD syste
   </stability>
   <license uri="http://www.php.net/license">PHP License</license>
   <notes>
-	(dev)
+ - Fixed copyright (thanks to Wez)
+ - Added BSD system autodetection (native call "setproctitle")
 </notes>
   <contents>
     <dir name="/">
       <file name="README" role="doc"/>
+      <file name="LICENSE" role="doc"/>
       <file name="config.m4" role="src"/>
       <file name="proctitle.c" role="src"/>
       <file name="php_proctitle.h" role="src"/>

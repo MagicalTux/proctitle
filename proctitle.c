@@ -32,7 +32,7 @@
 static char *argv0 = NULL;
 #define MAX_TITLE_LENGTH        128
 
-#ifndef HAVE_SETPROCTITLE
+#ifndef PHP_SYSTEM_PROVIDES_SETPROCTITLE
 static void setproctitle(char *title, int tlen)
 {
 	char    buffer[MAX_TITLE_LENGTH];
@@ -77,7 +77,7 @@ PHP_FUNCTION(setproctitle)
 		RETURN_NULL();
 	}
 
-#ifndef HAVE_SETPROCTITLE
+#ifndef PHP_SYSTEM_PROVIDES_SETPROCTITLE
 	/* local (incompatible) setproctitle */
 	setproctitle(title, tlen);
 #else
@@ -115,7 +115,7 @@ zend_module_entry proctitle_module_entry = {
 #endif
 	"proctitle",
 	proctitle_functions,
-#ifndef HAVE_SETPROCTITLE
+#ifndef PHP_SYSTEM_PROVIDES_SETPROCTITLE
 	PHP_MINIT(proctitle),
 #else
 	NULL,

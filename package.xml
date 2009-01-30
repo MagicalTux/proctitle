@@ -14,15 +14,14 @@ This extension allows changing the current process' name on Linux and *BSD syste
   </lead>
   <date>2009-01-30</date>
   <version>
-    <release>0.1.1</release><api>0.1.1</api>
+    <release>0.1.2dev</release><api>0.1.2dev</api>
   </version>
   <stability>
     <release>alpha</release><api>alpha</api>
   </stability>
   <license uri="http://www.php.net/license">PHP License</license>
   <notes>
- - Fixed copyright (thanks to Wez)
- - Added BSD system autodetection (native call "setproctitle")
+ - Fixed package version by using a define (suggested by rza)
 </notes>
   <contents>
     <dir name="/">
@@ -30,7 +29,9 @@ This extension allows changing the current process' name on Linux and *BSD syste
       <file name="LICENSE" role="doc"/>
       <file name="config.m4" role="src"/>
       <file name="proctitle.c" role="src"/>
-      <file name="php_proctitle.h" role="src"/>
+      <file name="php_proctitle.h" role="src">
+        <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+      </file>
     </dir>
   </contents>
   <dependencies>
@@ -48,6 +49,15 @@ This extension allows changing the current process' name on Linux and *BSD syste
  <changelog>
    <release>
      <stability><release>alpha</release><api>alpha</api></stability>
+     <version><release>0.1.1</release><api>0.1.1</api></version>
+     <date>2009-01-30</date>
+     <notes>
+ - Fixed copyright (thanks to Wez)
+ - Added BSD system autodetection (native call "setproctitle")
+     </notes>
+    </release>
+   <release>
+     <stability><release>alpha</release><api>alpha</api></stability>
      <version><release>0.1.0</release><api>0.1.0</api></version>
      <date>2009-01-29</date>
      <notes>
@@ -55,5 +65,5 @@ This extension allows changing the current process' name on Linux and *BSD syste
 - Merged code from various sources (initial wikipedia code, code found on bug report, etc)
      </notes>
     </release>
-	</changelog>
+  </changelog>
 </package>

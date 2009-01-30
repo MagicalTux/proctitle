@@ -125,7 +125,7 @@ zend_module_entry proctitle_module_entry = {
 	NULL,
 	PHP_MINFO(proctitle),
 #if ZEND_MODULE_API_NO >= 20010901
-	"0.1",
+	PHP_PROCTITLE_VERSION,
 #endif
 	STANDARD_MODULE_PROPERTIES
 };

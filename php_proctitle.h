@@ -21,6 +21,8 @@
 #ifndef PHP_PROCTITLE_H
 #define PHP_PROCTITLE_H
 
+#define PHP_PROCTITLE_VERSION "@PACKAGE_VERSION@"
+
 extern zend_module_entry proctitle_module_entry;
 #define phpext_proctitle_ptr &proctitle_module_entry
 

@@ -91,7 +91,7 @@ PHP_FUNCTION(setproctitle)
  *
  * Every user visible function must have an entry in proctitle_functions[].
  */
-static function_entry proctitle_functions[] = {
+static zend_function_entry proctitle_functions[] = {
 	PHP_FE(setproctitle,	NULL)		/* For testing, remove later. */
 	{NULL, NULL, NULL}	/* Must be the last line in proctitle_functions[] */
 };

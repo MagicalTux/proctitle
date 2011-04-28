@@ -27,6 +27,10 @@
 #include <dlfcn.h>
 #include <string.h>
 
+#ifdef HAVE_PRCTL
+#include <sys/prctl.h>
+#endif
+
 #include "php_proctitle.h"
 
 static char *argv0 = NULL;
@@ -87,12 +91,36 @@ PHP_FUNCTION(setproctitle)
 }
 /* }}} */
 
+#if HAVE_PRCTL
+/* {{{ bool mixed setthreadtitle(string title)
+   Sets the thread name */
+PHP_FUNCTION(setthreadtitle)
+{
+	char *title;
+	int title_len;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &title, &title_len) == FAILURE) {
+		return;
+	}
+	if (0 == prctl(PR_SET_NAME, title, 0, 0, 0)) {
+		RETURN_TRUE;
+	} else {
+		RETURN_FALSE;
+	}
+
+}
+/* }}} */
+#endif
+
 /* {{{ proctitle_functions[]
  *
  * Every user visible function must have an entry in proctitle_functions[].
  */
 static zend_function_entry proctitle_functions[] = {
-	PHP_FE(setproctitle,	NULL)		/* For testing, remove later. */
+	PHP_FE(setproctitle,	NULL)
+#if HAVE_PRCTL
+	PHP_FE(setthreadtitle,	NULL)
+#endif
 	{NULL, NULL, NULL}	/* Must be the last line in proctitle_functions[] */
 };
 /* }}} */
@@ -135,3 +163,12 @@ zend_module_entry proctitle_module_entry = {
 ZEND_GET_MODULE(proctitle)
 #endif
 
+
+/*
+ * Local variables:
+ * tab-width: 4
+ * c-basic-offset: 4
+ * End:
+ * vim600: fdm=marker
+ * vim: noet sw=4 ts=4
+ */

@@ -12,6 +12,16 @@ if test "$PHP_PROCTITLE" != "no"; then
 	],[
 		php_system_provides_setproctitle_call=no
 	])])
+
+    AC_MSG_CHECKING([for prctl])
+
+    AC_TRY_COMPILE([ #include <sys/prctl.h> ], [prctl(0, 0, 0, 0, 0);], [
+        AC_DEFINE([HAVE_PRCTL], 1, [do we have prctl?])
+        AC_MSG_RESULT([yes])
+    ], [
+        AC_MSG_RESULT([no])
+    ])
+
 	AC_MSG_CHECKING([if your OS provides a native way to change a process title])
 	if test "$php_system_provides_setproctitle_call" = "yes"; then
 		AC_MSG_RESULT(yes)
